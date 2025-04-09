@@ -1,0 +1,13 @@
+[project]
+name = "pdftable2excel"
+version = "0.1.0"
+description = "Extract Table from PDF to Excel App"
+authors = [{name = "Muhammad Soleh", email = "matthelosh@gmail.com"}]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.8"
+
+dependencies = ["pandas", "camelot-py[cv]", "openpyxl", "pyqt5"]
+
+[tool.setuptools]
+packages = ["pdftable2excel"]
