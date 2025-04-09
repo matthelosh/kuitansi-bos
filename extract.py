@@ -1,6 +1,18 @@
+import os
+import sys
+import platform
 import camelot
 import pandas as pd
 import datetime
+
+if platform.system() == "Windows":
+
+    base_dir = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+
+
+    gs_bin_path = os.path.join(base_dir, 'ghostscript', 'bin')
+    os.environ["PATH"] += os.pathsep + gs_bin_path
+    
 
 def pdf_table_to_excel(pdf_path, output_path):
     tables = camelot.read_pdf(pdf_path, pages="all")

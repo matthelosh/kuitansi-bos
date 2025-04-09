@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QFileDialog, QVB
 import sys
 from extract import pdf_table_to_excel
 
+
 class PdfTable2Excel(QWidget):
     def __init__(self):
         super().__init__()
