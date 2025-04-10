@@ -11,7 +11,7 @@ class PdfTable2Excel(QWidget):
 
     def initUI(self):
         self.setWindowTitle("Esktrak Tabel di PDF ke Excel")
-        self.setGeometry(100,100,300,200)
+        self.setGeometry(200,200,300,200)
 
         # self.btn = QPushButton("Pilih File PDF", self)
         # self.btn.clicked.connect(self.buka_file)

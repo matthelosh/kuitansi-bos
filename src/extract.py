@@ -1,20 +1,14 @@
-import os
-import sys
-import platform
+# import os
+# import sys
+# import platform
 import camelot
 import pandas as pd
 import datetime
 from sqlalchemy import create_engine
+from utils.ghostscript_setup import setup_ghostscript
 
-if platform.system() == "Windows":
-
-    base_dir = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
-
-
-    gs_bin_path = os.path.join(base_dir, 'ghostscript', 'bin')
-    os.environ["PATH"] += os.pathsep + gs_bin_path
+setup_ghostscript()
     
-
 def extract_table(pdf_path):
     tables = camelot.read_pdf(pdf_path, pages="all")
 
@@ -25,9 +19,6 @@ def extract_table(pdf_path):
     all_data = [tables[i].df for i in range(tables.n)]
     final_df = pd.concat(all_data, ignore_index=True)
 
-    # for i in range(tables.n):
-    #     df = tables[i].df
-    #     all_data.append(df)
 
     def format_tanggal(tanggal):
         try:
@@ -67,7 +58,7 @@ def pdf_table_to_excel(pdf_path, output_path):
         # print(f"Tabel berhasil disimpan sebagai: {output_path}")
         return True
     
-def save_to_db(pdf_path, db_path="sqlite:///data.db", table_name="bku"):
+def save_to_db(pdf_path, db_path="sqlite:///data/data.db", table_name="bku"):
     engine = create_engine(db_path)
     df = extract_table(pdf_path)
     header_row = df.iloc[[0]]
